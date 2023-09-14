@@ -1,9 +1,9 @@
 # Data Structures
 
->**This project will help me learn data structures fundamentals**
+> **This project will help me learn data structures fundamentals**
 
 **Data structure topics:**
-- [ ] Array
+- [x] Array
 - [ ] Linked List
 - [ ] Stack
 - [ ] Queue
