@@ -54,5 +54,18 @@ public interface DynamicArrayInterface<T> extends ArrayInterface<T> {
      */
     T deleteAt(int position);
 
+    /**
+     * Inserts a given element at a given position
+     * <p>
+     * <p>
+     * Worst case: O(n) <br>
+     * Worst case of inserting into an array is linear.
+     * This is because during the insertion, a new static array is created
+     * and the previous elements are copied over into the new static array
+     * with the new element inserted at the given position.
+     *
+     * @param position  given position that the element will be inserted into within the array
+     * @param element   element that is going to be inserted at the given position within the array
+     */
     void insertAt(int position, T element);
 }
