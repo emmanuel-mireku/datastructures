@@ -2,11 +2,6 @@ package com.emmanuel.datastructures.arrays;
 
 public interface ArrayInterface<T> {
     /**
-     * @return the size of the array
-     */
-    int size();
-
-    /**
      * Returns the element in the array at the given index of the array
      * <p>
      * <p>
@@ -41,14 +36,4 @@ public interface ArrayInterface<T> {
      *
      */
     void set(int index, T element);
-
-    /**
-     * Checks the size of the array and
-     * returns true if the size of the array is 0
-     * <p>
-     * Worst case: O(1)
-     *
-     * @return true if the array is empty
-     */
-    boolean isEmpty();
 }
