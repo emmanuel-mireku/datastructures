@@ -1,22 +1,23 @@
-package com.emmanuel.datastructures.linkedlists.singly;
+package com.emmanuel.datastructures.linkedlists.doubly;
 
 import com.emmanuel.datastructures.linkedlists.LinkedList;
 
 import static com.emmanuel.datastructures.linkedlists.LinkedListConstants.*;
 
-public class SinglyLinkedList<T> implements LinkedList<T> {
+
+public class DoublyLinkedList<T> implements LinkedList<T> {
     private Node<T> first;
     private Node<T> last;
     private int size;
 
-    public SinglyLinkedList() {
-        first = last = new Node<>();
+    public DoublyLinkedList() {
+        first = last = null;
         size = 0;
     }
 
     @SafeVarargs
-    public SinglyLinkedList(T ...elements) {
-        for (T element: elements) {
+    public DoublyLinkedList(T... elements) {
+        for (T element : elements) {
             link(element);
         }
     }
@@ -25,8 +26,8 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
     public int indexOf(T value) {
         Node<T> currentNode = first;
         int index = 0;
-        while(null != currentNode) {
-            if(value.equals(currentNode.value)) {
+        while (null != currentNode) {
+            if (value.equals(currentNode.value)) {
                 return index;
             }
             index++;
@@ -52,43 +53,39 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public void link(int index, T element) {
-        if(isValidIndex(index)) {
-            if(index == 0) {
-                linkFirst(element);
-                return;
-            }
-            Node<T> currentNode = first;
-            int increment = 0;
-            while(true) {
-                if(increment == index - 1) {
-                    Node<T> nextNode = currentNode.next;
-                    currentNode.next = new Node<>(element, nextNode);
-                    size++;
-                    return;
-                }
-                increment++;
-                currentNode = currentNode.next;
-            }
+        if (index == 0) {
+            linkFirst(element);
+        } else {
+            insertElementAt(index, element);
         }
-        throw new IndexOutOfBoundsException(CANNOT_ADD_OUT_OF_BOUNDS);
+    }
+
+    private void insertElementAt(int index, T element) {
+        Node<T> currentNode = getNode(index);
+        Node<T> previousNode = currentNode.previous;
+        Node<T> newNode = new Node<>(previousNode, element, currentNode);
+        currentNode.previous = newNode;
+        previousNode.next = newNode;
+        size++;
     }
 
     @Override
     public void linkFirst(T element) {
-        if(isEmpty()) {
-            first = last = new Node<>(element);
+        if (isEmpty()) {
+            first = last = new Node<>(null, element, null);
         } else {
-            first = new Node<>(element, first);
+            first.previous = new Node<>(null, element, first);
+            first = first.previous;
         }
         size++;
     }
 
     @Override
     public void linkLast(T element) {
-        if(isEmpty()) {
-            first = last = new Node<>(element);
+        if (isEmpty()) {
+            first = last = new Node<>(null, element, null);
         } else {
-            last.next = new Node<>(element);
+            last.next = new Node<>(last, element, null);
             last = last.next;
         }
         size++;
@@ -96,35 +93,46 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public T unlink(int index) {
-        if(isValidIndex(index)) {
-            if(index == 0) {
+        if (isValidIndex(index)) {
+            if (index == 0) {
                 return unlinkFirst();
             }
-            if(index == size - 1) {
+            if (index == size - 1) {
                 return unlinkLast();
             }
-            Node<T> previousNode = first;
-            int currentIndex = 0;
-            while(true) {
-                if(currentIndex == index - 1) {
-                    Node<T> currentNode = previousNode.next;
-                    Node<T> nextNode = currentNode.next;
-                    T deletedValue = currentNode.value;
-                    currentNode.value = null;
-                    previousNode.next = nextNode;
-                    size--;
-                    return deletedValue;
-                }
-                currentIndex++;
-                previousNode = previousNode.next;
-            }
+            return getDeletedNode(getNode(index));
         }
         throw new IndexOutOfBoundsException(DELETION_INVALID_NO_INDEX);
     }
 
+    private T getDeletedNode(Node<T> currentNode) {
+        T deletedValue = currentNode.value;
+        updateLinks(currentNode);
+        deleteNode(currentNode);
+        size--;
+        return deletedValue;
+    }
+
+    private static <T> void updateLinks(Node<T> currentNode) {
+        Node<T> previousNode = currentNode.previous;
+        Node<T> nextNode = currentNode.next;
+        previousNode.next = nextNode;
+        nextNode.previous = previousNode;
+    }
+
+    private void deleteNode(Node<T> currentNode) {
+        currentNode.value = null;
+        currentNode.previous = null;
+        currentNode.next = null;
+    }
+
+    private boolean isValidIndex(int index) {
+        return index >= 0 && index < size;
+    }
+
     @Override
     public T unlinkFirst() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException(DELETION_INVALID_EMPTY_LIST);
         }
         T deletedValue = first.value;
@@ -135,21 +143,12 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public T unlinkLast() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException(DELETION_INVALID_EMPTY_LIST);
         }
         T deletedValue = last.value;
-        Node<T> currentNode = first;
-        Node<T> nextNode = currentNode.next;
-        while(nextNode != null) {
-            if(nextNode.equals(last)) {
-                last = currentNode;
-                size--;
-            } else {
-                currentNode = currentNode.next;
-                nextNode = nextNode.next;
-            }
-        }
+        last = last.previous;
+        size--;
         return deletedValue;
     }
 
@@ -161,11 +160,6 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
     @Override
     public T getLastLink() {
         return last.value;
-    }
-
-    @Override
-    public T getLink(int index) {
-        return getNode(index).value;
     }
 
     private Node<T> getNode(int index) {
@@ -183,15 +177,17 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
         throw new IndexOutOfBoundsException(INDEX_OUT_OF_BOUNDS);
     }
 
-    private boolean isValidIndex(int index) {
-        return index >= 0 && index < size;
+    @Override
+    public T getLink(int index) {
+        return getNode(index).value;
     }
 
     @Override
     public void clear() {
         Node<T> currentNode = first;
-        while(null != currentNode) {
+        while (null != currentNode) {
             currentNode.value = null;
+            currentNode.previous = null;
             currentNode = currentNode.next;
         }
         first = last = null;
@@ -202,14 +198,15 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
     public String toString() {
         StringBuilder output = new StringBuilder();
         Node<T> currentNode = first;
-        if(isEmpty()) {
+        if (isEmpty()) {
             return output.toString();
         }
         output.append("{HEAD} --> ");
-        while(null != currentNode) {
-            output.append(currentNode.value).append(" --> ");
+        while (null != currentNode) {
+            output.append("<-- ").append(currentNode.value).append(" --> ");
             currentNode = currentNode.next;
         }
         return output.append("{TAIL}").toString();
     }
+
 }

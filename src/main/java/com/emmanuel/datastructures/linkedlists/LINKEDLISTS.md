@@ -25,7 +25,7 @@ the space consumed is 2 times less the amount of doubly linked list
 - Delete at head: O(1)
 - Delete at tail: O(n)
 - Delete at middle: O(n)
-- 
+
 
 ## Doubly Linked List
 > ***A doubly linked list is linked list that has two pointers

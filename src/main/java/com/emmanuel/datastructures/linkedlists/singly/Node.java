@@ -1,17 +1,17 @@
 package com.emmanuel.datastructures.linkedlists.singly;
 
 public class Node<T> {
-    Node<T> next;
-    T value;
+    public Node<T> next;
+    public T value;
 
     public Node() {
-        value = null;
         next = null;
+        value = null;
     }
 
     public Node(T value) {
         this.value = value;
-        next = null;
+        this.next = null;
     }
 
     public Node(T value, Node<T> next) {

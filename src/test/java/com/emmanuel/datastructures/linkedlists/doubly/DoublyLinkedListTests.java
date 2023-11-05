@@ -1,4 +1,4 @@
-package com.emmanuel.datastructures.linkedlists.singly;
+package com.emmanuel.datastructures.linkedlists.doubly;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,20 +12,12 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class SinglyLinkedListTests {
+public class DoublyLinkedListTests {
     public static Stream<Arguments> indexAndExpectedValue() {
         return Stream.of(
                 Arguments.of(0, "Hi"),
                 Arguments.of(1, "Hey"),
                 Arguments.of(2, "3te s3n"));
-    }
-
-    public static Stream<Arguments> indexAndExpectedValueUnlink() {
-        return Stream.of(
-                Arguments.of(0, "Hi"),
-                Arguments.of(1, "Hey"),
-                Arguments.of(2, "3te s3n"),
-                Arguments.of(3, "ola!"));
     }
 
     public static Stream<Arguments> valueAndExpectedIndex() {
@@ -39,7 +31,7 @@ public class SinglyLinkedListTests {
     void ensureElementsArePrependedCorrectly() {
         String firstElement = "Hi";
         String secondElement = "Hey";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
         list.linkFirst(secondElement);
         list.linkFirst(firstElement);
         assertFalse(list.isEmpty());
@@ -50,7 +42,7 @@ public class SinglyLinkedListTests {
     void ensureElementsAreAppendedCorrectly() {
         String firstElement = "Hi";
         String secondElement = "Hey";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
         list.linkLast(firstElement);
         list.linkLast(secondElement);
         assertFalse(list.isEmpty());
@@ -61,8 +53,8 @@ public class SinglyLinkedListTests {
     void ensureElementsAreAddedCorrectlyWhenInstantiated() {
         String firstElement = "Hi";
         String secondElement = "Hey";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement);
         assertFalse(list.isEmpty());
         assertEquals(2, list.size());
     }
@@ -73,8 +65,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         list.link(expectedIndex, value);
         assertEquals(expectedIndex, list.indexOf(value));
         assertFalse(list.isEmpty());
@@ -86,8 +78,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         assertThrows(IndexOutOfBoundsException.class, () -> list.link(25, "Hola"));
     }
 
@@ -96,7 +88,7 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>(
+        DoublyLinkedList<String> list = new DoublyLinkedList<>(
                 firstElement,
                 secondElement,
                 thirdElement);
@@ -108,7 +100,7 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>(
+        DoublyLinkedList<String> list = new DoublyLinkedList<>(
                 firstElement,
                 secondElement,
                 thirdElement);
@@ -120,8 +112,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         assertEquals(firstElement, list.getFirstLink());
     }
 
@@ -130,8 +122,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         assertEquals(thirdElement, list.getLastLink());
     }
 
@@ -141,8 +133,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         assertEquals(expectedValue, list.getLink(index));
     }
 
@@ -151,8 +143,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         assertThrows(IndexOutOfBoundsException.class, () -> list.getLink(25));
     }
 
@@ -161,8 +153,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         assertEquals(firstElement, list.unlinkFirst());
         assertFalse(list.isEmpty());
         assertEquals(2, list.size());
@@ -170,8 +162,8 @@ public class SinglyLinkedListTests {
 
     @Test
     void ensureRemovingFromEmptyListThrowsException() {
-        assertThrows(RuntimeException.class, () -> new SinglyLinkedList<String>().unlinkFirst());
-        assertThrows(RuntimeException.class, () -> new SinglyLinkedList<String>().unlinkLast());
+        assertThrows(RuntimeException.class, () -> new DoublyLinkedList<String>().unlinkFirst());
+        assertThrows(RuntimeException.class, () -> new DoublyLinkedList<String>().unlinkLast());
     }
 
     @Test
@@ -179,7 +171,7 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>(
+        DoublyLinkedList<String> list = new DoublyLinkedList<>(
                 firstElement,
                 secondElement,
                 thirdElement);
@@ -189,20 +181,18 @@ public class SinglyLinkedListTests {
         assertEquals(secondElement, list.getLastLink());
     }
     @ParameterizedTest
-    @MethodSource("indexAndExpectedValueUnlink")
+    @MethodSource("indexAndExpectedValue")
     void ensureElementIsRemoved(int index, String expectedValue) {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        String fourthElement = "ola!";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>(
+        DoublyLinkedList<String> list = new DoublyLinkedList<>(
                 firstElement,
                 secondElement,
-                thirdElement,
-                fourthElement);
+                thirdElement);
         assertEquals(expectedValue, list.unlink(index));
         assertFalse(list.isEmpty());
-        assertEquals(3, list.size());
+        assertEquals(2, list.size());
     }
 
     @Test
@@ -210,8 +200,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         assertThrows(IndexOutOfBoundsException.class, () -> list.unlink(25));
         assertThrows(IndexOutOfBoundsException.class, () -> list.unlink(-2));
     }
@@ -221,8 +211,8 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list =
-                new SinglyLinkedList<>(firstElement, secondElement, thirdElement);
+        DoublyLinkedList<String> list =
+                new DoublyLinkedList<>(firstElement, secondElement, thirdElement);
         list.clear();
         assertTrue(list.isEmpty());
         assertEquals(0, list.size());
@@ -233,7 +223,7 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
         list.link(firstElement);
         list.link(secondElement);
         list.link(thirdElement);
@@ -246,7 +236,7 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
         list.link(firstElement);
         list.link(secondElement);
         list.link(thirdElement);
@@ -258,7 +248,7 @@ public class SinglyLinkedListTests {
         String firstElement = "Hi";
         String secondElement = "Hey";
         String thirdElement = "3te s3n";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
         list.link(firstElement);
         list.link(secondElement);
         list.link(thirdElement);
@@ -267,7 +257,7 @@ public class SinglyLinkedListTests {
 
     @Test
     void ensureToStringReturnsExistingElementsIntoString() {
-        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
         list.link(1);
         list.link(2);
         list.link(3);
@@ -275,11 +265,11 @@ public class SinglyLinkedListTests {
         list.link(5);
         assertNotNull(list.toString());
         assertEquals(
-                "{HEAD} --> 1 --> 2 --> 3 --> 4 --> 5 --> {TAIL}", list.toString());
+                "{HEAD} --> <-- 1 --> <-- 2 --> <-- 3 --> <-- 4 --> <-- 5 --> {TAIL}", list.toString());
     }
 
     @Test
     void ensureToStringOnEmptyLinkedListReturnsEmptyString() {
-        assertEquals("", new SinglyLinkedList<Integer>().toString());
+        assertEquals("", new DoublyLinkedList<Integer>().toString());
     }
 }
