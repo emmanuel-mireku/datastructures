@@ -4,7 +4,7 @@
 
 **Data structure topics:**
 - [x] Array
-- [ ] Linked List
+- [x] Linked List
 - [ ] Stack
 - [ ] Queue
 - [ ] Tree
@@ -14,4 +14,3 @@
 - [ ] AVL Tree
 - [ ] Fenwick Tree
 - [ ] Trie
-
