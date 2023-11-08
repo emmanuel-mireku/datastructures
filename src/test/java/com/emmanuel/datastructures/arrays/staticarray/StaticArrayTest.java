@@ -1,4 +1,4 @@
-package com.emmanuel.datastructures.arrays;
+package com.emmanuel.datastructures.arrays.staticarray;
 
 
 import org.junit.jupiter.api.Test;
