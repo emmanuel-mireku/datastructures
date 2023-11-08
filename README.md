@@ -5,7 +5,7 @@
 **Data structure topics:**
 - [x] Array
 - [x] Linked List
-- [ ] Stack
+- [x] Stack
 - [ ] Queue
 - [ ] Tree
 - [ ] Heap
