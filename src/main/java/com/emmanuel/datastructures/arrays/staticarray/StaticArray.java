@@ -1,4 +1,7 @@
-package com.emmanuel.datastructures.arrays;
+package com.emmanuel.datastructures.arrays.staticarray;
+
+
+import com.emmanuel.datastructures.arrays.ArrayInterface;
 
 
 @SuppressWarnings({"unchecked", "ManualArrayCopy"})
@@ -66,5 +69,18 @@ public class StaticArray<T> implements ArrayInterface<T> {
 
     public T[] getArray() {
         return array;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for (int i = 0; ; i++) {
+            builder.append(get(i));
+            if (i == size() - 1) {
+                return builder.append("]").toString();
+            }
+            builder.append(", ");
+        }
     }
 }

@@ -1,4 +1,6 @@
-package com.emmanuel.datastructures.arrays;
+package com.emmanuel.datastructures.arrays.dynamicarray;
+
+import com.emmanuel.datastructures.arrays.ArrayInterface;
 
 public interface DynamicArrayInterface<T> extends ArrayInterface<T> {
     /**

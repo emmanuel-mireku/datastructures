@@ -1,4 +1,4 @@
-package com.emmanuel.datastructures.arrays;
+package com.emmanuel.datastructures.arrays.dynamicarray;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -105,5 +105,15 @@ public class DynamicArrayTest {
         DynamicArray<String> dynamicArray = new DynamicArray<>();
         dynamicArray.clear();
         assertEquals(0, dynamicArray.size());
+    }
+
+    @Test
+    void ensureDynamicIsPrinted() {
+        DynamicArray<String> dynamicArray = new DynamicArray<>();
+        dynamicArray.add("Hi");
+        dynamicArray.add("Ha");
+        dynamicArray.add("He");
+        dynamicArray.add("Ho");
+        assertNotEquals("", dynamicArray.toString());
     }
 }

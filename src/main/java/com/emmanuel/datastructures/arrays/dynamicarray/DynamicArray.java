@@ -1,4 +1,6 @@
-package com.emmanuel.datastructures.arrays;
+package com.emmanuel.datastructures.arrays.dynamicarray;
+
+import com.emmanuel.datastructures.arrays.staticarray.StaticArray;
 
 public class DynamicArray<T> extends StaticArray<T> implements DynamicArrayInterface<T> {
 
@@ -119,6 +121,19 @@ public class DynamicArray<T> extends StaticArray<T> implements DynamicArrayInter
     @Override
     public int size() {
         return currentSize;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for (int i = 0; ; i++) {
+            builder.append(get(i));
+            if (currentSize - 1 == i) {
+                return builder.append("]").toString();
+            }
+            builder.append(", ");
+        }
     }
 
     private boolean isValidIndex(int index) {
