@@ -95,12 +95,15 @@ public class DynamicArray<T> extends StaticArray<T> implements DynamicArrayInter
     public T deleteAt(int position) {
         StaticArray<T> newArray = new StaticArray<>(capacity);
         if (isValidIndex(position)) {
+            int j = 0;
             int i = 0;
-            while (i < newArray.size()) {
-                if (position != i) {
-                    newArray.set(i, get(i));
+            while (i < super.size() - 1) {
+                if (position == i) {
+                    j += 1;
                 }
+                newArray.set(i, get(j));
                 i++;
+                j++;
             }
             T deletedElement = get(position);
             setArray(newArray);

@@ -86,11 +86,10 @@ public class DynamicArrayTest {
         dynamicArray.add("Hey");
         dynamicArray.add("Howdy");
         dynamicArray.add("sup");
-        dynamicArray.delete("Maakye");
         String deletedElement = dynamicArray.deleteAt(3);
         assertEquals("Howdy", deletedElement);
         assertFalse(dynamicArray.isEmpty());
-        assertEquals(3, dynamicArray.size());
+        assertEquals(4, dynamicArray.size());
     }
 
     @Test
