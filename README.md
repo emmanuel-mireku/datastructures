@@ -6,11 +6,12 @@
 - [x] Array
 - [x] Linked List
 - [x] Stack
-- [ ] Queue
-- [ ] Tree
+- [x] Queue
 - [ ] Heap
+- [ ] Tree
 - [ ] Graph
 - [ ] Hash Table
+- [ ] Priority Queue
 - [ ] AVL Tree
 - [ ] Fenwick Tree
 - [ ] Trie
